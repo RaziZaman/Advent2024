@@ -9,7 +9,7 @@ public class Day12024 {
     public static void main(String[] args) {
         int total = 0;
         int similarity = 0;
-        ArrayList<String> fileData = getFileData("C:\\Users\\BT_4N2_02\\Downloads\\Advent2024-main\\Advent2024-main\\Advent2024\\src\\day1input.txt");
+        ArrayList<String> fileData = getFileData("src/day1input.txt");
         System.out.println(fileData);
         int[] list1 = new int[fileData.size()];
         int[] list2 = new int[fileData.size()];

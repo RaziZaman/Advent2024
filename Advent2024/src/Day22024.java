@@ -5,36 +5,60 @@ import java.util.Scanner;
 
 public class Day22024 {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("C:\\Users\\BT_4N2_02\\Downloads\\Advent2024-main\\Advent2024-main\\Advent2024\\src\\day2input.txt");
+        ArrayList<String> fileData = getFileData("src/day2input.txt");
         System.out.println(fileData);
         int count = 0;
-        boolean check1 = true;
-        boolean check2 = true;
+        int safeCount = 0;
         for (int i = 0; i < fileData.size(); i++) {
             String[] newArray = fileData.get(i).split(" ");
             for (int j = 1; j < newArray.length; j++) {
                 System.out.println(Integer.parseInt(newArray[j]));
                 if (Integer.parseInt(newArray[0]) < Integer.parseInt(newArray[1])) {
                     if (!(Integer.parseInt(newArray[j]) > Integer.parseInt(newArray[j - 1]))) {
-                        check1 = false;
-                    }
-                    if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) <= 3)) {
-                        check2 = false;
+                        if (j - 2 == -1) {
+                            if (!(Integer.parseInt(newArray[j + 1]) > Integer.parseInt(newArray[j - 1]))) {
+                                safeCount++;
+                            }
+                        } else if (!(Integer.parseInt(newArray[j]) > Integer.parseInt(newArray[j - 2]))) {
+                            safeCount++;
+                        }
+                        safeCount++;
+                    } else if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) <= 3) && (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) >= 1))) {
+                        if (j - 2 == -1) {
+                            if (!(Math.abs(Integer.parseInt(newArray[j + 1]) - Integer.parseInt(newArray[j - 1])) <= 3) || !(Math.abs(Integer.parseInt(newArray[j + 1]) - Integer.parseInt(newArray[j - 1])) >= 1)) {
+                                safeCount++;
+                            }
+                        } else if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 2])) <= 3) || !(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 2])) >= 1)) {
+                            safeCount++;
+                        }
+                        safeCount++;
                     }
                 } else {
                     if (!(Integer.parseInt(newArray[j]) < Integer.parseInt(newArray[j - 1]))) {
-                        check1 = false;
-                    }
-                    if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) <= 3)) {
-                        check2 = false;
+                        if (j - 2 == -1) {
+                            if (!(Integer.parseInt(newArray[j + 1]) < Integer.parseInt(newArray[j - 1]))) {
+                                safeCount++;
+                            }
+                        } else if (!(Integer.parseInt(newArray[j]) < Integer.parseInt(newArray[j - 2]))) {
+                            safeCount++;
+                        }
+                        safeCount++;
+                    } else if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) <= 3) && (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 1])) >= 1))) {
+                        if (j - 2 == -1) {
+                            if (!(Math.abs(Integer.parseInt(newArray[j + 1]) - Integer.parseInt(newArray[j - 1])) <= 3) || !(Math.abs(Integer.parseInt(newArray[j + 1]) - Integer.parseInt(newArray[j - 1])) >= 1)) {
+                                safeCount++;
+                            }
+                        } else if (!(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 2])) <= 3) || !(Math.abs(Integer.parseInt(newArray[j]) - Integer.parseInt(newArray[j - 2])) >= 1)) {
+                            safeCount++;
+                        }
+                        safeCount++;
                     }
                 }
             }
-            if (check1 && check2) {
+            if (safeCount <= 1) {
                 count++;
             }
-            check1 = true;
-            check2 = true;
+            safeCount = 0;
         }
         System.out.println(count);
     }
