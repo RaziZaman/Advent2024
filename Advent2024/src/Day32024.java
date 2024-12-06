@@ -14,33 +14,27 @@ public class Day32024 {
         System.out.println(fileData);
         int total = 0;
         boolean status = true;
-        String regex = "mul\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]),([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)";
-        String regex2 = "don't()";
-        String regex3 = "do()";
+        String regex = "don't\\(\\)|do\\(\\)|mul\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]),([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)";
         Matcher match;
-        Matcher current2;
-        Matcher current3;
         for (int i = 0; i < fileData.size(); i++) {
                 match = Pattern.compile(regex).matcher(fileData.get(i));
-                current2 = Pattern.compile(regex2).matcher(fileData.get(i));
-                current3 = Pattern.compile(regex3).matcher(fileData.get(i));
                 while (match.find()) {
-                    while (current2.find()) {
-                        status = false;
-                    }
-                    while (current3.find()) {
-                        status = true;
-                    }
-                    if (status) {
-                        matches.add(match.group());
-                    }
+                    matches.add(match.group());
                 }
         }
 
         System.out.println(matches);
         for (int i = 0; i < matches.size(); i++) {
-            String[] value = matches.get(i).split(",");
-            total += Integer.parseInt(value[0].substring(4)) * Integer.parseInt(value[1].substring(0,value[1].length() - 1));
+            if ((matches.get(i)).startsWith("mul") && status) {
+                String[] value = matches.get(i).split(",");
+                total += Integer.parseInt(value[0].substring(4)) * Integer.parseInt(value[1].substring(0,value[1].length() - 1));
+            } else {
+                if (matches.get(i).startsWith("don't")) {
+                    status = false;
+                } else if (matches.get(i).startsWith("do")) {
+                    status = true;
+                }
+            }
         }
         System.out.println(total);
     }
