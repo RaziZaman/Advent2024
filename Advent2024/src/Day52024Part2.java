@@ -44,6 +44,7 @@ public class Day52024Part2 {
                     if (list.contains(rules.get(i).substring(0,2)) && list.contains(rules.get(i).substring(3,5)) && rules.get(i).contains(list.substring(i, i + 2))) {
                         if (rules.get(i).substring(0,2).contains(list.substring(i, i + 2))) {
                             leftCount++;
+
                         }
                         if (rules.get(i).substring(3,5).contains(list.substring(i, i + 2))) {
                             rightCount++;
@@ -51,6 +52,7 @@ public class Day52024Part2 {
                     }
                 }
                 if (leftCount == rightCount) {
+
                     return Integer.parseInt(list.substring(i,i + 2));
                 }
                 leftCount = 0;
