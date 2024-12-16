@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         ArrayList<String> fileData = getFileData("src/Day1Input.txt");
         System.out.println(fileData);
-        // you now have an ArrayList of Strings for each number in the file
-        // do Advent 2020 day 1!
+
     }
 
     public static ArrayList<String> getFileData(String fileName) {

@@ -37,7 +37,7 @@ public class Day62024 {
                 if (fileData.get(y - 1).substring(x, x + 1).equals("#")) {
                     position = "right";
                 } else {
-                    newArray.set(y, newArray.get(y))
+                    newArray.set(y, newArray.get(y));
                     y--;
                     count++;
                 }
