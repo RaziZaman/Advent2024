@@ -12,7 +12,6 @@ public class Day92024 {
         int current = 0;
         boolean toggle = true;
         ArrayList<String> step1 = new ArrayList<>();
-        ArrayList<String> step2 = new ArrayList<>();
         ArrayList<String> newFileData = new ArrayList<>();
         for (int i = 0; i < fileData.length(); i++) {
             newFileData.add(fileData.substring(i, i + 1));
@@ -34,10 +33,35 @@ public class Day92024 {
             }
         }
         System.out.println(step1);
+        ArrayList<String> step2 = step1;
+        String temp = "";
+        boolean done = false;
+        for (int i = 0; i < step2.size(); i++) {
+            if (step2.get(i).equals(".")) {
+                for (int j = step2.size() - 1; j >= 0; j--) {
+                    if (!done && !step2.get(j).equals(".") && step2.get(i).equals(".")) {
+                        temp = step2.get(j);
+                        step2.set(j, ".");
+                        step2.set(i, temp);
+                        done = true;
+                    }
+                }
+                done = false;
+            }
+        }
+        int total = 0;
+        int current2 = 0;
+        for (int i = 0; i < step2.size(); i++) {
+            if (!step2.get(i).equals(".")) {
+                total += current2 * Integer.parseInt(step2.get(i));
+            }
+            current2++;
+        }
+        System.out.println(step2);
+        System.out.println(total);
     }
-
     public static ArrayList<String> getFileData(String fileName) {
-        ArrayList<String> fileData = new ArrayList<String>();
+        ArrayList<String> fileData = new ArrayList<>();
         try {
             File f = new File(fileName);
             Scanner s = new Scanner(f);
