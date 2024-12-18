@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Day92024 {
     public static void main(String[] args) {
-
         String fileData = String.valueOf(getFileData("src/day9input.txt")).substring(1, String.valueOf(getFileData("src/day9input.txt")).length() - 1);
         System.out.println(fileData);
         int current = 0;
