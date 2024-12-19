@@ -6,25 +6,28 @@ import java.util.Scanner;
 public class Day112024 {
     public static void main(String[] args) {
 
-        ArrayList<Integer> fileData = new ArrayList<>();
-        fileData.add(8435);
-        fileData.add(234);
-        fileData.add(928434);
-        fileData.add(14);
-        fileData.add(0);
-        fileData.add(7);
-        fileData.add(92446);
-        fileData.add(8992692);
+        ArrayList<Long> fileData = new ArrayList<Long>();
+        fileData.add(8435L);
+        fileData.add(234L);
+        fileData.add(928434L);
+        fileData.add(14L);
+        fileData.add(0L);
+        fileData.add(7L);
+        fileData.add(92446L);
+        fileData.add(8992692L);
         System.out.println(fileData);
-        for (int j = 0; j < 25; j++) {
-            for (int i = 0; i < fileData.size(); i++) {
-                if (fileData.get(i) == 0) {
-                    fileData.set(i, 1);
+        int count = fileData.size();
+        for (int j = 0; j < 75; j++) {
+            for (int i = 0; i < count; i++) {
+                if (fileData.get(i) == 0L) {
+                    fileData.set(i, 1L);
                 } else if (String.valueOf(fileData.get(i)).length() % 2 == 0) {
-                    fileData.set(i, Integer.valueOf(String.valueOf(fileData.get(i)).substring(0,String.valueOf(fileData.get(i)).length() / 2)));
-                    fileData.add( i + 1,Integer.valueOf(String.valueOf(fileData.get(i)).substring(String.valueOf(fileData.get(i)).length() / 2)));
+                    fileData.add(i + 1, Long.parseLong(String.valueOf(fileData.get(i)).substring(String.valueOf(fileData.get(i)).length() / 2)));
+                    fileData.set(i, Long.parseLong(String.valueOf(fileData.get(i)).substring(0, String.valueOf(fileData.get(i)).length() / 2)));
+                    i++;
+                    count++;
                 } else {
-                    fileData.set(i, (int) ((double) fileData.get(i) * 2024));
+                    fileData.set(i, (fileData.get(i) * 2024));
                 }
             }
             System.out.println(fileData);
